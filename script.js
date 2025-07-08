@@ -30,7 +30,8 @@ const itens = [
      "Lixeira - 1",
      "Tapete Tummy Time - 1",
      "Seringa para lavagem nasal - 1",
-     "naninha"
+     "Naninha",
+     "Mantinha"
 ];
 
 const loginContainer = document.getElementById("login-container");
@@ -61,7 +62,8 @@ function montarLista() {
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) {
         listaRef.child(index).set({
-          marcado: true
+          marcado: true,
+          usuario: nomeUsuario
         });
       } else {
         listaRef.child(index).remove();
