@@ -3,17 +3,44 @@ body {
   background: #fffbee;
   margin: 30px;
   color: #4b3f00;
+  text-align: center;
 }
 
-h1 {
-  text-align: center;
-  color: #f4b400;
-  text-shadow: 1px 1px 0 #fff;
+#login-container {
+  max-width: 300px;
+  margin: 100px auto;
+  background: #fff;
+  border: 2px dashed #f4b400;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+#nomeInput {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border: 1px solid #f4b400;
+  border-radius: 8px;
+}
+
+#btnEntrar {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #f4b400;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #4b3f00;
+  font-weight: bold;
+}
+
+#btnEntrar:hover {
+  background-color: #d9a800;
 }
 
 .abelhinha {
   font-size: 40px;
-  text-align: center;
   margin-bottom: 10px;
 }
 
@@ -22,6 +49,7 @@ ul {
   padding: 0;
   max-width: 500px;
   margin: 0 auto;
+  text-align: left;
 }
 
 li {
@@ -32,6 +60,7 @@ li {
   background-color: #fff;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   font-size: 18px;
   transition: background-color 0.3s;
 }
@@ -47,8 +76,12 @@ input[type="checkbox"] {
 }
 
 footer {
-  text-align: center;
   margin-top: 40px;
   font-size: 14px;
   color: #999;
+}
+
+#userInfo {
+  font-style: italic;
+  margin-bottom: 15px;
 }
