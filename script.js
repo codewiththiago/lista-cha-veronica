@@ -54,33 +54,26 @@ function montarLista() {
     const spanNome = document.createElement("span");
     spanNome.textContent = nome;
 
-    const spanUser = document.createElement("span");
-    spanUser.style.fontSize = "14px";
-    spanUser.style.color = "#666";
-
     li.appendChild(checkbox);
     li.appendChild(spanNome);
-    li.appendChild(spanUser);
     listaUl.appendChild(li);
 
-    // Quando mudar checkbox
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) {
-        // Salva quem marcou
-        listaRef.child(index).set(nomeUsuario);
+        // Salva no banco { marcado: true, usuario: nomeUsuario }
+        listaRef.child(index).set({
+          marcado: true,
+          usuario: nomeUsuario
+        });
       } else {
-        // Desmarca
         listaRef.child(index).remove();
       }
     });
 
-    // Escuta alterações no Firebase
     listaRef.child(index).on("value", (snapshot) => {
       const val = snapshot.val();
-      checkbox.checked = val !== null;
-      li.classList.toggle("selecionado", val !== null);
-
-      spanUser.textContent = val ? `Marcado por: ${val}` : "";
+      checkbox.checked = val?.marcado === true;
+      li.classList.toggle("selecionado", val?.marcado === true);
     });
   });
 }
