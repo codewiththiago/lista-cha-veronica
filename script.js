@@ -60,10 +60,8 @@ function montarLista() {
 
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) {
-        // Salva no banco { marcado: true, usuario: nomeUsuario }
         listaRef.child(index).set({
-          marcado: true,
-          usuario: nomeUsuario
+          marcado: true
         });
       } else {
         listaRef.child(index).remove();
