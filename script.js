@@ -63,7 +63,8 @@ function montarLista() {
       if (checkbox.checked) {
         listaRef.child(index).set({
           marcado: true,
-          usuario: nomeUsuario
+          usuario: nomeUsuario,
+          item: itens[index]
         });
       } else {
         listaRef.child(index).remove();
