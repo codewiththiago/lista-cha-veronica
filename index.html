@@ -10,10 +10,19 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 </head>
 <body>
-  <div class="abelhinha">🐝💛</div>
-  <h1>Lista de Presentes da Veronica</h1>
-  <ul id="lista"></ul>
-  <footer>Com carinho para a pequena Veronica 🐝</footer>
+  <div id="login-container">
+    <h2>Digite seu nome para entrar</h2>
+    <input type="text" id="nomeInput" placeholder="Seu nome" />
+    <button id="btnEntrar">Entrar</button>
+  </div>
+
+  <div id="app" style="display:none;">
+    <div class="abelhinha">🐝💛</div>
+    <h1>Lista de Presentes da Veronica</h1>
+    <p id="userInfo"></p>
+    <ul id="lista"></ul>
+    <footer>Com carinho para a pequena Veronica 🐝</footer>
+  </div>
 
   <script src="script.js"></script>
 </body>
