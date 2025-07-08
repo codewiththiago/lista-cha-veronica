@@ -14,16 +14,23 @@ const db = firebase.database();
 const listaRef = db.ref("presentes");
 
 const itens = [
-  "Fraldas RN",
-  "Fraldas P",
-  "Lenços Umedecidos",
-  "Pomada para Assaduras",
-  "Sabonete Líquido Infantil",
-  "Body de algodão (RN ou P)",
-  "Toalha com capuz",
-  "Manta ou Cobertor",
-  "Meias de bebê",
-  "Brinquedinho de pelúcia"
+     "Pomada para assaduras",
+     "Sabonete líquido neutro (próprio para RN)",
+     "Toalhas com capuz - 2", 
+     "Lixa de unha eletrica - 1",
+     "Paninhos de boca - 6 a 10",
+     "Fralda de ombro - 5",
+     "Cueiro - 2",
+     "Sling - 1",
+     "Termômetro digital - 1",
+     "Babadores",
+     "Trocador portátil - 1",
+     "Almofada de amamentação - 1",
+     "Rosquinhas para seios",
+     "Lixeira - 1",
+     "Tapete Tummy Time - 1",
+     "Seringa para lavagem nasal - 1 ",
+     "naninha"
 ];
 
 const listaUl = document.getElementById("lista");
