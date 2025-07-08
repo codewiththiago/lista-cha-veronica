@@ -29,7 +29,7 @@ const itens = [
      "Rosquinhas para seios",
      "Lixeira - 1",
      "Tapete Tummy Time - 1",
-     "Seringa para lavagem nasal - 1 ",
+     "Seringa para lavagem nasal - 1",
      "naninha"
 ];
 
