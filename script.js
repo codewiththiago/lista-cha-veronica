@@ -33,28 +33,73 @@ const itens = [
      "naninha"
 ];
 
+const loginContainer = document.getElementById("login-container");
+const appContainer = document.getElementById("app");
+const nomeInput = document.getElementById("nomeInput");
+const btnEntrar = document.getElementById("btnEntrar");
 const listaUl = document.getElementById("lista");
+const userInfo = document.getElementById("userInfo");
 
-itens.forEach((nome, index) => {
-  const li = document.createElement("li");
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  checkbox.id = `item-${index}`;
+let nomeUsuario = localStorage.getItem("nomeUsuario");
 
-  const span = document.createElement("span");
-  span.textContent = nome;
+function montarLista() {
+  listaUl.innerHTML = "";
 
-  li.appendChild(checkbox);
-  li.appendChild(span);
-  listaUl.appendChild(li);
+  itens.forEach((nome, index) => {
+    const li = document.createElement("li");
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.id = `item-${index}`;
 
-  checkbox.addEventListener("change", () => {
-    listaRef.child(index).set(checkbox.checked);
+    const spanNome = document.createElement("span");
+    spanNome.textContent = nome;
+
+    const spanUser = document.createElement("span");
+    spanUser.style.fontSize = "14px";
+    spanUser.style.color = "#666";
+
+    li.appendChild(checkbox);
+    li.appendChild(spanNome);
+    li.appendChild(spanUser);
+    listaUl.appendChild(li);
+
+    // Quando mudar checkbox
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) {
+        // Salva quem marcou
+        listaRef.child(index).set(nomeUsuario);
+      } else {
+        // Desmarca
+        listaRef.child(index).remove();
+      }
+    });
+
+    // Escuta alterações no Firebase
+    listaRef.child(index).on("value", (snapshot) => {
+      const val = snapshot.val();
+      checkbox.checked = val !== null;
+      li.classList.toggle("selecionado", val !== null);
+
+      spanUser.textContent = val ? `Marcado por: ${val}` : "";
+    });
   });
+}
 
-  listaRef.child(index).on("value", (snapshot) => {
-    const marcado = snapshot.val();
-    checkbox.checked = marcado;
-    li.classList.toggle("selecionado", marcado);
-  });
-});
+function entrar(nome) {
+  nomeUsuario = nome.trim();
+  if (!nomeUsuario) return alert("Por favor, digite seu nome.");
+
+  localStorage.setItem("nomeUsuario", nomeUsuario);
+  userInfo.textContent = `Olá, ${nomeUsuario}!`;
+  loginContainer.style.display = "none";
+  appContainer.style.display = "block";
+
+  montarLista();
+}
+
+btnEntrar.onclick = () => entrar(nomeInput.value);
+
+// Se já tiver nome salvo, entra direto
+if (nomeUsuario) {
+  entrar(nomeUsuario);
+}
