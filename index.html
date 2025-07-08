@@ -3,55 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <title>Lista de Presentes da Veronica 🐝</title>
-  <style>
-    body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #fffbee;
-      margin: 30px;
-      color: #4b3f00;
-    }
-    h1 {
-      text-align: center;
-      color: #f4b400;
-      text-shadow: 1px 1px 0 #fff;
-    }
-    .abelhinha {
-      font-size: 40px;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-    li {
-      padding: 10px;
-      margin: 10px 0;
-      border: 2px dashed #f4b400;
-      border-radius: 10px;
-      background-color: #fff;
-      display: flex;
-      align-items: center;
-      font-size: 18px;
-      transition: background-color 0.3s;
-    }
-    li.selecionado {
-      background-color: #dfffcf;
-      text-decoration: line-through;
-    }
-    input[type="checkbox"] {
-      margin-right: 15px;
-      transform: scale(1.3);
-    }
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 14px;
-      color: #999;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 </head>
 <body>
   <div class="abelhinha">🐝💛</div>
@@ -59,74 +15,6 @@
   <ul id="lista"></ul>
   <footer>Com carinho para a pequena Veronica 🐝</footer>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
-
-  <script>
-    // Substitua abaixo pelo seu firebaseConfig:
-    const firebaseConfig = {
-      apiKey: "SUA_API_KEY",
-      authDomain: "seu-projeto.firebaseapp.com",
-      databaseURL: "https://seu-projeto.firebaseio.com",
-      projectId: "seu-projeto",
-      storageBucket: "seu-projeto.appspot.com",
-      messagingSenderId: "XXX",
-      appId: "1:XXX:web:XXX"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-    const listaRef = db.ref("presentes");
-
-    const itens = [
-     "Pomada para assaduras",
-     "Sabonete líquido neutro (próprio para RN)",
-     "Toalhas com capuz - 2", 
-     "Lixa de unha eletrica - 1",
-     "Paninhos de boca - 6 a 10",
-     "Fralda de ombro - 5",
-     "Cueiro - 2",
-     "Sling - 1",
-     "Termômetro digital - 1",
-     "Babadores",
-     "Trocador portátil - 1",
-     "Almofada de amamentação - 1",
-     "Rosquinhas para seios",
-     "Lixeira - 1",
-     "Tapete Tummy Time - 1",
-     "Seringa para lavagem nasal - 1 ",
-     "naninha"
-    ];
-
-    const listaUl = document.getElementById("lista");
-
-    // Cria lista e escuta mudanças
-    itens.forEach((nome, index) => {
-      const li = document.createElement("li");
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.id = `item-${index}`;
-
-      const span = document.createElement("span");
-      span.textContent = nome;
-
-      li.appendChild(checkbox);
-      li.appendChild(span);
-      listaUl.appendChild(li);
-
-      // Atualiza no Firebase quando marcado
-      checkbox.addEventListener("change", () => {
-        listaRef.child(index).set(checkbox.checked);
-      });
-
-      // Escuta do Firebase
-      listaRef.child(index).on("value", (snapshot) => {
-        const marcado = snapshot.val();
-        checkbox.checked = marcado;
-        li.classList.toggle("selecionado", marcado);
-      });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
