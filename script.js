@@ -31,7 +31,8 @@ const itens = [
      "Tapete Tummy Time - 1",
      "Seringa para lavagem nasal - 1",
      "Naninha",
-     "Mantinha"
+     "Cobertinha",
+     "Bomba de tirar leite"
 ];
 
 const loginContainer = document.getElementById("login-container");
